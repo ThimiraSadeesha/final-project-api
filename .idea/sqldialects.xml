@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/device-config/device_config_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/device-config/device_config_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/device-config/device_config_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/device-config/device_config_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/device/device_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/device/device_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/device/device_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/device/device_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/emergency-Person/emergencyPerson_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/emergency-Person/emergencyPerson_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/emergency-Person/emergencyPerson_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/emergency-Person/emergencyPerson_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/fire/fire_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/fire/fire_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/fire/fire_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/fire/fire_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/hospital/hospital_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/hospital/hospital_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/hospital/hospital_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/hospital/hospital_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident-history/incident_history_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident-history/incident_history_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident-history/incident_history_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident-history/incident_history_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident/incident_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident/incident_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident/incident_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident/incident_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/notification/notification_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/notification/notification_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/notification/notification_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/notification/notification_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/police/police_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/police/police_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/police/police_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/police/police_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/response/response_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/response/response_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/response/response_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/response/response_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/role/role_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/role/role_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/role/role_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/role/role_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/user/user_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/user/user_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/user/user_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/user/user_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/vehicle/vehicle_get.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/vehicle/vehicle_getAll.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/vehicle/vehicle_save.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/vehicle/vehicle_update.sql" dialect="MySQL" />
+  </component>
+</project>

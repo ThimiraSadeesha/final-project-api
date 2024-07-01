@@ -52,7 +52,6 @@ export class UserService {
       createUserDTO.vehicles,
       createUserDTO.emergencyPersons,
       createUserDTO.devices,
-      createUserDTO.notifications
     ]);
     let res= processData(result,0)
     console.log(res)

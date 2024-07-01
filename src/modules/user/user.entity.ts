@@ -29,7 +29,7 @@ class User{
 
   devices:number
 
-  notifications:number
+
 
 }
 export class CreateUserDTO extends User{
@@ -40,6 +40,7 @@ export class CreateUserDTO extends User{
 export class UpdateUserDTO extends User{
   userId:number;
   userStatus:Status;
+  notifications:number
 }
 
 

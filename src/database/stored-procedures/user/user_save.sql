@@ -14,8 +14,7 @@ CREATE PROCEDURE `accident_detection_DB`.`user_save`(
     IN role_val INT,
     IN vehicles_val INT,
     IN emergencyPersons_val INT,
-    IN devices_val INT,
-    IN notifications_val INT
+    IN devices_val INT
 )
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -31,9 +30,9 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'User is already exist.';
     END IF;
     INSERT INTO tbl_user (userName, fullName, nic, contactNumber, email, gender, address, city, district,
-                          province, userPassword,role_id, vehicleId, deviceId, emergencyPersonId,notificationId)
+                          province, userPassword,role_id, vehicleId, deviceId, emergencyPersonId)
     VALUES (userName_val, fullName_val, nic_val, contactNumber_val, email_val, gender_val, address_val, city_val,
-            district_val, province_val, userPassword_val, role_val,vehicles_val,devices_val,emergencyPersons_val,notifications_val);
+            district_val, province_val, userPassword_val, role_val,vehicles_val,devices_val,emergencyPersons_val);
     SET @InsertedID = LAST_INSERT_ID();
     CALL user_get(@InsertedID);
     COMMIT;

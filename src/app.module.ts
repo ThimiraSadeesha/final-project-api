@@ -22,6 +22,8 @@ import { EmergencyPersonModule } from './modules/emergency-person/emergency-pers
 import { NotificationModule } from './modules/notification/notification.module';
 import { DeviceConfigModule } from './modules/device-config/device-config.module';
 import { MqttService } from './modules/mqtt/mqtt.service'
+import { HealthModule } from './modules/health/health.module'
+import { EventEmitterModule } from '@nestjs/event-emitter'
 
 
 @Module({
@@ -33,6 +35,8 @@ import { MqttService } from './modules/mqtt/mqtt.service'
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
     RouterModule.register(routes),
+    HealthModule,
+    EventEmitterModule.forRoot(),
     UserModule,
     VehicleModule,
     FireModule,
@@ -46,6 +50,7 @@ import { MqttService } from './modules/mqtt/mqtt.service'
     EmergencyPersonModule,
     NotificationModule,
     DeviceConfigModule,
+
   ],
   controllers: [AppController],
   providers: [

@@ -19,14 +19,14 @@ export class MqttService implements OnModuleInit {
     const options: mqtt.IClientOptions = {
       host: "15.235.192.41",
       port: 1883,
-      username: "thimira",
-      password: "371701"
+      username: "sadee",
+      password: "qwerty"
     };
 
     this.client = mqtt.connect(options);
     this.logger.log(`Attempting to connect to MQTT broker at ${options.host}:${options.port}`);
 
-    const topics = ["esp/vibration", "esp/output1status", "esp/sensor", "esp/adxl345", "esp/mpu6050"];
+    const topics = ["esp/1", "esp/output1status", "esp/sensor", "esp/adxl345", "esp/mpu6050"];
 
     this.client.on("connect", () => {
       this.logger.log("Successfully connected to MQTT broker");
@@ -42,7 +42,7 @@ export class MqttService implements OnModuleInit {
     });
 
     this.client.on("message", (topic, message) => {
-      this.handleMessage(topic, message.toString());
+      this.handleMessage('esp/1', message.toString());
     });
 
     this.client.on("error", (error) => {

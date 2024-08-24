@@ -9,44 +9,49 @@ import { ResponseModule } from './src/modules/response/response.module'
 import { EmergencyPersonModule } from './src/modules/emergency-person/emergency-person.module'
 import { DeviceModule } from './src/modules/device/device.module'
 import { NotificationModule } from './src/modules/notification/notification.module'
+import { HealthModule } from './src/modules/health/health.module'
 
 
 export const routes: Routes = [
   {
-    path: 'user',
-    module: UserModule,
-  }, {
-    path: 'vehicle',
-    module: VehicleModule,
-  }
-  , {
-    path: 'fire',
-    module: FireModule,
-  }
-  , {
-    path: 'hospital',
-    module: HospitalModule,
-  }
-  , {
-    path: 'police',
-    module: PoliceModule,
-  }
-  , {
-    path: 'role',
-    module: RoleModule,
-  }
-  , {
-    path: 'response',
-    module: ResponseModule,
-  }, {
-    path: 'emergency',
-    module: EmergencyPersonModule,
-  }, {
-    path: 'device',
-    module: DeviceModule,
-  },, {
-    path: 'notification',
-    module: NotificationModule,
-  },
+    path: 'health',
+    module: HealthModule}
+
+  // }, {
+  //   path: 'user',
+  //   module: UserModule,
+  // }, {
+  //   path: 'vehicle',
+  //   module: VehicleModule,
+  // }
+  // , {
+  //   path: 'fire',
+  //   module: FireModule,
+  // }
+  // , {
+  //   path: 'hospital',
+  //   module: HospitalModule,
+  // }
+  // , {
+  //   path: 'police',
+  //   module: PoliceModule,
+  // }
+  // , {
+  //   path: 'role',
+  //   module: RoleModule,
+  // }
+  // , {
+  //   path: 'response',
+  //   module: ResponseModule,
+  // }, {
+  //   path: 'emergency',
+  //   module: EmergencyPersonModule,
+  // }, {
+  //   path: 'device',
+  //   module: DeviceModule,
+  // },, {
+  //   path: 'notification',
+  //   module: NotificationModule,
+  // },
 
 ]

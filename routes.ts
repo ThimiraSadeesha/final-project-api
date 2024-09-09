@@ -15,43 +15,43 @@ import { HealthModule } from './src/modules/health/health.module'
 export const routes: Routes = [
   {
     path: 'health',
-    module: HealthModule}
+    module: HealthModule
 
-  // }, {
-  //   path: 'user',
-  //   module: UserModule,
-  // }, {
-  //   path: 'vehicle',
-  //   module: VehicleModule,
-  // }
-  // , {
-  //   path: 'fire',
-  //   module: FireModule,
-  // }
-  // , {
-  //   path: 'hospital',
-  //   module: HospitalModule,
-  // }
-  // , {
-  //   path: 'police',
-  //   module: PoliceModule,
-  // }
-  // , {
-  //   path: 'role',
-  //   module: RoleModule,
-  // }
-  // , {
-  //   path: 'response',
-  //   module: ResponseModule,
-  // }, {
-  //   path: 'emergency',
-  //   module: EmergencyPersonModule,
-  // }, {
-  //   path: 'device',
-  //   module: DeviceModule,
-  // },, {
-  //   path: 'notification',
-  //   module: NotificationModule,
-  // },
+  }, {
+    path: 'user',
+    module: UserModule,
+  }, {
+    path: 'vehicle',
+    module: VehicleModule,
+  }
+  , {
+    path: 'fire',
+    module: FireModule,
+  }
+  , {
+    path: 'hospital',
+    module: HospitalModule,
+  }
+  , {
+    path: 'police',
+    module: PoliceModule,
+  }
+  , {
+    path: 'role',
+    module: RoleModule,
+  }
+  , {
+    path: 'response',
+    module: ResponseModule,
+  }, {
+    path: 'emergency',
+    module: EmergencyPersonModule,
+  }, {
+    path: 'device',
+    module: DeviceModule,
+  }, {
+    path: 'notification',
+    module: NotificationModule,
+  },
 
 ]

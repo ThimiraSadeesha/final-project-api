@@ -14,29 +14,11 @@ export class UserService {
 
   async getAll(){
     const result = await this.dataSourceRepository.query('CALL accident_detection_DB.user_getAll()');
-    let data = processData(result, 0);
-    data.map(user => {
-
-      if (user.role) {
-        try {
-          user.role = JSON.parse(user.role);
-        } catch (error) {
-          console.error(`Error parsing department JSON for user ${user.userName}:`, error);
-        }
-      }
-      if (user.vehicle) {
-        try {
-          user.vehicle = JSON.parse(user.vehicle);
-        } catch (error) {
-          console.error(`Error parsing vehicles JSON for user ${user.userName}:`, error);
-        }
-      }
-    });
-    return data;
+    return processData(result, 0);
   }
 
   async create(createUserDTO: CreateUserDTO){
-    const result= await this.dataSourceRepository.query('CALL accident_detection_DB.user_save(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [
+    const result= await this.dataSourceRepository.query('CALL accident_detection_DB.user_save(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [
       createUserDTO.userName,
       createUserDTO.fullName,
       createUserDTO.nic,
@@ -53,9 +35,9 @@ export class UserService {
       createUserDTO.emergencyPersons,
       createUserDTO.devices,
     ]);
-    let res= processData(result,0)
-    console.log(res)
-    return result;
+    // let res= processData(result,1)
+    // console.log(res)
+    return processData(result,1);
   }
 
   async getUser(userId: number) {

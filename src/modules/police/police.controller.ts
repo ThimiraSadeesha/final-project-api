@@ -5,7 +5,7 @@ import { CreatePoliceDTO, UpdatePoliceDTO } from './police.entity'
 @Controller()
 export class PoliceController {
   constructor(private readonly policeService: PoliceService) {}
-  @Get('/all')
+  @Get()
   async getAll() {
     return await this.policeService.getAll();
   }

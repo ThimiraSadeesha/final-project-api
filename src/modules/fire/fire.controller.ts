@@ -6,7 +6,7 @@ import { CreateFireDTO, UpdateFireDTO } from './fire.entity'
 export class FireController {
   constructor(private readonly fireService: FireService) {}
 
-  @Get('/all')
+  @Get()
   async getAll() {
     return await this.fireService.getAll();
   }

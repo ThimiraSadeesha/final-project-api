@@ -8,7 +8,7 @@ BEGIN
     END;
 
     START TRANSACTION;
-        SELECT id            AS hospitalId,
+        SELECT id            AS fireId,
                fireCode      AS firelCode,
                fireName     AS fireName,
                contactNumber AS contactNumber,

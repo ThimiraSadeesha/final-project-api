@@ -43,14 +43,14 @@ export class HospitalService {
       updateHospitalDTO.areaCovered,
       updateHospitalDTO.contactNumber,
     ])
-    return processData(result, 1)
+    return processData(result, 0)
   }
 
   async getById(id: number) {
     const result = await this.dataSourceRepository.query('CALL accident_detection_DB.hospital_get(?)', [
       id,
     ])
-    return processData(result, 0)
+    return processData(result, 1)
   }
 
 

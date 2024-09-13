@@ -20,8 +20,9 @@ export class HospitalController {
     return await this.hospitalService.getById(id);
   }
 
-  @Put('/:id')
+  @Put(':id')
   async update(@Param('id') id: number, @Body() updateHospitalDTO: UpdateHospitalDTO) {
+    console.log('dsfjsdfbjskdfbsdkf')
     return await this.hospitalService.update(id, updateHospitalDTO);
   }
 

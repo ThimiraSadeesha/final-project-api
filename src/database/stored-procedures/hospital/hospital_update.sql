@@ -22,6 +22,7 @@ BEGIN
     INTO @record_count
     FROM tbl_hospital th
     WHERE th.id = p_hospitalId;
+
     IF @record_count > 1 THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT  = 'Multiple records found. Please contact system administrator.';
     ELSE IF @record_count = 0 THEN
@@ -36,12 +37,12 @@ BEGIN
         hospitalName = p_hospitalName,
         contactNumber = p_contactNumber,
         city = p_city,
-        district = p_district,
-        province = p_province,
-        areaCovered = p_areaCovered
+        district = p_district
+#         province = p_province
     WHERE
         id = p_hospitalId;
 
+        select p_hospitalId;
 
     END IF;
     COMMIT;

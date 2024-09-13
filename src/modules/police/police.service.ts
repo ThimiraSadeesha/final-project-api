@@ -35,11 +35,11 @@ export class PoliceService {
       Id,
       updatePoliceDTO.code,
       updatePoliceDTO.name,
-      updatePoliceDTO.province,
+      updatePoliceDTO.contactNumber,
       updatePoliceDTO.city,
       updatePoliceDTO.district,
+      updatePoliceDTO.province,
       updatePoliceDTO.areaCovered,
-      updatePoliceDTO.contactNumber,
     ])
   }
 
@@ -47,7 +47,7 @@ export class PoliceService {
     const result = await this.dataSourceRepository.query('CALL accident_detection_DB.police_get(?)', [
       id,
     ])
-    return processData(result, 0)
+    return processData(result, 1)
   }
 
 

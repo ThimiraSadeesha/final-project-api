@@ -1,5 +1,5 @@
-DROP PROCEDURE IF EXISTS `accident_detection_DB`.`hospital_getAll`;
-CREATE PROCEDURE `accident_detection_DB`.`hospital_getAll`()
+DROP PROCEDURE IF EXISTS `accident_detection_DB`.`insurance_getAll`;
+CREATE PROCEDURE `accident_detection_DB`.`insurance_getAll`()
 BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
         BEGIN
@@ -7,13 +7,13 @@ BEGIN
             SELECT CONCAT('Error: [', @sqlstate, '] ', @message_text) AS error_message;
         END;
 
-    SELECT id AS hospitalId,
-           hospitalCode AS hospitalCode,
-           hospitalName AS hospitalName,
+    SELECT id AS insuranceId,
+           insuranceCode AS insuranceCode,
+           insuranceName AS insuranceName,
            contactNumber AS contactNumber,
            city AS city,
            district AS district,
            province AS province,
            areaCovered AS coverdArea
-    FROM tbl_hospital  ORDER BY id DESC;
+    FROM tbl_insurance;
 END

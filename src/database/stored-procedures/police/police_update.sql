@@ -39,9 +39,11 @@ BEGIN
         areaCovered = p_areaCovered
     WHERE
         id = p_policeId;
+
+    SET @InsertedID = LAST_INSERT_ID();
+    select p_policeId;
+
     END IF;
     COMMIT;
     END IF;
-    SET @InsertedID = LAST_INSERT_ID();
-    CALL police_get(@InsertedID);
 END

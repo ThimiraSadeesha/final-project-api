@@ -16,6 +16,6 @@ BEGIN
                district      AS district,
                province      AS province,
                areaCovered   AS coverdArea
-        FROM tbl_fire;
+        FROM tbl_fire  ORDER BY id DESC;
     COMMIT;
 END;

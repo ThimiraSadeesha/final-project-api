@@ -24,7 +24,7 @@ BEGIN
                         'province', tu.province,
                         'userPassword', tu.userPassword
 
-    FROM tbl_user tu;
+    FROM tbl_user tu  ORDER BY id DESC;
 
     COMMIT;
 

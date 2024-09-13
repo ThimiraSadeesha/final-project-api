@@ -29,6 +29,7 @@
     <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident/incident_getAll.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident/incident_save.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/database/stored-procedures/incident/incident_update.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/database/stored-procedures/insurance/insurance_get.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/database/stored-procedures/insurance/insurance_getAll.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/database/stored-procedures/notification/notification_get.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/database/stored-procedures/notification/notification_getAll.sql" dialect="MySQL" />

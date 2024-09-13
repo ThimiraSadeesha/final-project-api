@@ -10,10 +10,16 @@ import { EmergencyPersonModule } from './src/modules/emergency-person/emergency-
 import { DeviceModule } from './src/modules/device/device.module'
 import { NotificationModule } from './src/modules/notification/notification.module'
 import { HealthModule } from './src/modules/health/health.module'
+import { InsuranceModule } from './src/modules/insurance/insurance.module'
+import { IncidentModule } from './src/modules/incident/incident.module'
 
 
 export const routes: Routes = [
   {
+    path: 'accident',
+    module: IncidentModule
+
+  },   {
     path: 'health',
     module: HealthModule
 
@@ -52,6 +58,9 @@ export const routes: Routes = [
   }, {
     path: 'notification',
     module: NotificationModule,
+  },, {
+    path: 'insurance',
+    module: InsuranceModule,
   },
 
 ]

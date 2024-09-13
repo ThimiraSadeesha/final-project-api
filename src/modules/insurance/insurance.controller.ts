@@ -1,7 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common'
 import { InsuranceService } from './insurance.service';
 
-@Controller('insurance')
+@Controller()
 export class InsuranceController {
   constructor(private readonly insuranceService: InsuranceService) {}
+
+  @Get('/all')
+  async getAll() {
+    return await this.insuranceService.getAll();
+  }
 }

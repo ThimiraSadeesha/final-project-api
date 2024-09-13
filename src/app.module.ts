@@ -24,6 +24,7 @@ import { DeviceConfigModule } from './modules/device-config/device-config.module
 import { MqttService } from './modules/mqtt/mqtt.service'
 import { HealthModule } from './modules/health/health.module'
 import { EventEmitterModule } from '@nestjs/event-emitter'
+import { InsuranceModule } from './modules/insurance/insurance.module'
 
 
 @Module({
@@ -50,6 +51,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter'
     EmergencyPersonModule,
     NotificationModule,
     DeviceConfigModule,
+    InsuranceModule
 
   ],
   controllers: [AppController],

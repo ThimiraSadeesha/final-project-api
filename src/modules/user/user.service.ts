@@ -42,24 +42,13 @@ export class UserService {
 
   async getUser(userId: number) {
     const result = await this.dataSourceRepository.query('CALL accident_detection_DB.user_get(?)', [userId]);
-    let data = processData(result, 0);
-    data.map(function(user) {
-
-      if (user.role) {
-        try {
-          user.role = JSON.parse(user.role)
-        } catch (error) {
-          console.error(`Error parsing department JSON for user ${user.userName}:`, error)
-        }
-      }
-      if (user.vehicle) {
-        try {
-          user.vehicle = JSON.parse(user.vehicle)
-        } catch (error) {
-          console.error(`Error parsing vehicles JSON for user ${user.userName}:`, error)
-        }
-      }
-    });
+    let data = processData(result, 1);
+    // data.role = JSON.parse(data.role)
+    // data.vehicle = JSON.parse(data.vehicle)
+    // data.map(function(user) {
+    //
+    //
+    // });
     return data;
   }
 

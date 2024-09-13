@@ -21,11 +21,12 @@ export class HospitalService {
    let result= await this.dataSourceRepository.query('CALL accident_detection_DB.hospital_save(?,?,?,?,?,?,?)', [
       createHospitalDTO.code,
       createHospitalDTO.name,
+     createHospitalDTO.contactNumber,
+     createHospitalDTO.city,
+     createHospitalDTO.district,
       createHospitalDTO.province,
-      createHospitalDTO.city,
-      createHospitalDTO.district,
       createHospitalDTO.areaCovered,
-      createHospitalDTO.contactNumber,
+
     ])
 
     return processData(result, 1)
@@ -37,11 +38,12 @@ export class HospitalService {
       Id,
       updateHospitalDTO.code,
       updateHospitalDTO.name,
-      updateHospitalDTO.province,
+      updateHospitalDTO.contactNumber,
       updateHospitalDTO.city,
       updateHospitalDTO.district,
+      updateHospitalDTO.province,
       updateHospitalDTO.areaCovered,
-      updateHospitalDTO.contactNumber,
+
     ])
     return processData(result, 0)
   }

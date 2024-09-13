@@ -15,5 +15,5 @@ BEGIN
            district AS district,
            province AS province,
            areaCovered AS coverdArea
-    FROM tbl_insurance;
+    FROM tbl_insurance ORDER BY id DESC;
 END

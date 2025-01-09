@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm'
 import { DataSource, Repository } from 'typeorm'
-import { processData } from '../../utils/enums/util.enums'
+import { processData, processPaginationData } from '../../utils/enums/util.enums'
 import { CreateHospitalDTO, UpdateHospitalDTO } from './hospital.entity'
 
 @Injectable()
@@ -12,9 +12,11 @@ export class HospitalService {
 ) {
 }
 
-  async getAll() {
-    const result = await this.dataSourceRepository.query('CALL accident_detection_DB.hospital_getAll()')
-    return processData(result, 0)
+  async find(code: string, name: string, itemPerPage: number, page: number) {
+    const result = await this.dataSourceRepository.query('CALL hospital_find(?,?,?,?)', [
+      code, name, itemPerPage, page,
+    ])
+    return processPaginationData(result)
   }
 
   async create(createHospitalDTO:CreateHospitalDTO) {

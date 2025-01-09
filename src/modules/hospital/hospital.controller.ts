@@ -1,13 +1,24 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common'
 import { HospitalService } from './hospital.service';
 import { CreateHospitalDTO, UpdateHospitalDTO } from './hospital.entity'
 
 @Controller()
 export class HospitalController {
   constructor(private readonly hospitalService: HospitalService) {}
-  @Get()
-  async getAll() {
-    return await this.hospitalService.getAll();
+
+  @Get('find')
+  async findOrders(
+    @Query('code') code: string,
+    @Query('name') name: string,
+    @Query('items_per_page') itemsPerPage: number,
+    @Query('page_number') pageNumber: number
+  ) {
+    return await this.hospitalService.find(
+      code,
+      name,
+      +itemsPerPage,
+      +pageNumber
+    );
   }
 
   @Post()

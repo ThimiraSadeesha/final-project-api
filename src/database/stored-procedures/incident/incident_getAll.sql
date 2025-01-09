@@ -19,6 +19,6 @@ BEGIN
                 FROM tbl_device td
                 WHERE td.id = tn.deviceId) AS device
 
-        FROM tbl_incident tn;
+        FROM tbl_incident tn  ORDER BY id DESC;
     COMMIT;
 END;

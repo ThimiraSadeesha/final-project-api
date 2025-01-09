@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common'
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common'
 import { FireService } from './fire.service';
 import { CreateFireDTO, UpdateFireDTO } from './fire.entity'
 
@@ -6,9 +6,19 @@ import { CreateFireDTO, UpdateFireDTO } from './fire.entity'
 export class FireController {
   constructor(private readonly fireService: FireService) {}
 
-  @Get()
-  async getAll() {
-    return await this.fireService.getAll();
+  @Get('find')
+  async findOrders(
+    @Query('code') code: string,
+    @Query('name') name: string,
+    @Query('items_per_page') itemsPerPage: number,
+    @Query('page_number') pageNumber: number
+  ) {
+    return await this.fireService.find(
+      code,
+      name,
+      +itemsPerPage,
+      +pageNumber
+    );
   }
 
   @Post()

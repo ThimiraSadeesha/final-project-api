@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { DataSource, Repository } from 'typeorm'
-import { processData } from '../../utils/enums/util.enums'
+import { processData, processPaginationData } from '../../utils/enums/util.enums'
 import { CreatePoliceDTO, UpdatePoliceDTO } from './police.entity'
 
 @Injectable()
@@ -12,26 +12,34 @@ export class PoliceService {
   ) {
   }
 
+  async find(code: string, name: string, itemPerPage: number, page: number) {
+    const result = await this.dataSourceRepository.query('CALL police_find(?,?,?,?)', [
+      code, name, itemPerPage, page,
+    ])
+    return processPaginationData(result)
+  }
+
   async getAll() {
-    const result = await this.dataSourceRepository.query('CALL accident_detection_DB.police_getAll()')
+    const result = await this.dataSourceRepository.query('CALL police_getAll()')
     return processData(result, 0)
   }
 
   async create(createPoliceDTO: CreatePoliceDTO) {
-    return await this.dataSourceRepository.query('CALL accident_detection_DB.police_save(?,?,?,?,?,?,?)', [
+    return await this.dataSourceRepository.query('CALL police_save(?,?,?,?,?,?,?)', [
       createPoliceDTO.code,
       createPoliceDTO.name,
-      createPoliceDTO.province,
+      createPoliceDTO.contactNumber,
       createPoliceDTO.city,
       createPoliceDTO.district,
+      createPoliceDTO.province,
       createPoliceDTO.areaCovered,
-      createPoliceDTO.contactNumber,
+
     ])
   }
 
 
   async update(Id: number, updatePoliceDTO: UpdatePoliceDTO) {
-    return await this.dataSourceRepository.query('CALL accident_detection_DB.police_update(?,?,?,?,?,?,?,?)', [
+    return await this.dataSourceRepository.query('CALL police_update(?,?,?,?,?,?,?,?)', [
       Id,
       updatePoliceDTO.code,
       updatePoliceDTO.name,
@@ -44,7 +52,7 @@ export class PoliceService {
   }
 
   async getById(id: number) {
-    const result = await this.dataSourceRepository.query('CALL accident_detection_DB.police_get(?)', [
+    const result = await this.dataSourceRepository.query('CALL police_get(?)', [
       id,
     ])
     return processData(result, 1)

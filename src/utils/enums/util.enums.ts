@@ -22,3 +22,15 @@ export function removeProperties(obj, propsToRemove) {
 
   return obj;
 }
+
+
+export function processPaginationData (response: any){
+  const { page, itemsPerPage, totalItems, data } = response[0][0];
+
+  return {
+    page: page,
+    itemsPerPage: itemsPerPage,
+    totalItems: totalItems,
+    data:data
+  }
+}

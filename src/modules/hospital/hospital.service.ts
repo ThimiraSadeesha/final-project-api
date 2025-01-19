@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm'
 import { DataSource, Repository } from 'typeorm'
-import { processData } from '../../utils/enums/util.enums'
+import { processData, processPaginationData } from '../../utils/enums/util.enums'
 import { CreateHospitalDTO, UpdateHospitalDTO } from './hospital.entity'
 
 @Injectable()
@@ -12,20 +12,23 @@ export class HospitalService {
 ) {
 }
 
-  async getAll() {
-    const result = await this.dataSourceRepository.query('CALL accident_detection_DB.hospital_getAll()')
-    return processData(result, 0)
+  async find(code: string, name: string, itemPerPage: number, page: number) {
+    const result = await this.dataSourceRepository.query('CALL hospital_find(?,?,?,?)', [
+      code, name, itemPerPage, page,
+    ])
+    return processPaginationData(result)
   }
 
   async create(createHospitalDTO:CreateHospitalDTO) {
    let result= await this.dataSourceRepository.query('CALL accident_detection_DB.hospital_save(?,?,?,?,?,?,?)', [
       createHospitalDTO.code,
       createHospitalDTO.name,
+     createHospitalDTO.contactNumber,
+     createHospitalDTO.city,
+     createHospitalDTO.district,
       createHospitalDTO.province,
-      createHospitalDTO.city,
-      createHospitalDTO.district,
       createHospitalDTO.areaCovered,
-      createHospitalDTO.contactNumber,
+
     ])
 
     return processData(result, 1)
@@ -37,20 +40,21 @@ export class HospitalService {
       Id,
       updateHospitalDTO.code,
       updateHospitalDTO.name,
-      updateHospitalDTO.province,
+      updateHospitalDTO.contactNumber,
       updateHospitalDTO.city,
       updateHospitalDTO.district,
+      updateHospitalDTO.province,
       updateHospitalDTO.areaCovered,
-      updateHospitalDTO.contactNumber,
+
     ])
-    return processData(result, 1)
+    return processData(result, 0)
   }
 
   async getById(id: number) {
     const result = await this.dataSourceRepository.query('CALL accident_detection_DB.hospital_get(?)', [
       id,
     ])
-    return processData(result, 0)
+    return processData(result, 1)
   }
 
 

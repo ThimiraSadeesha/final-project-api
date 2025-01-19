@@ -23,5 +23,5 @@ BEGIN
 
     COMMIT;
     SET @InsertedID = LAST_INSERT_ID();
-    CALL police_get(@InsertedID);
+    SELECT @InsertedID As SavedId;
 END;

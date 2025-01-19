@@ -8,7 +8,7 @@ BEGIN
     END;
 
     START TRANSACTION;
-        SELECT id            AS hospitalId,
+        SELECT id            AS fireId,
                fireCode      AS firelCode,
                fireName     AS fireName,
                contactNumber AS contactNumber,
@@ -16,6 +16,6 @@ BEGIN
                district      AS district,
                province      AS province,
                areaCovered   AS coverdArea
-        FROM tbl_fire;
+        FROM tbl_fire  ORDER BY id DESC;
     COMMIT;
 END;

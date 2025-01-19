@@ -22,8 +22,8 @@ export class ResponseService {
      createPoliceDTO.responseStatus,
      createPoliceDTO.responseTime,
      createPoliceDTO.incidentId,
+      createPoliceDTO.policeDepartmentId,
      createPoliceDTO.fireDepartmentId,
-     createPoliceDTO.policeDepartmentId,
      createPoliceDTO.hospitalDepartmentId,
     ])
   }

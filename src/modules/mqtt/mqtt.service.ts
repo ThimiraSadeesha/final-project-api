@@ -20,17 +20,26 @@ export class MqttService implements OnModuleInit {
       host: '15.235.192.41',
       port: 1883,
       username: 'sadee',
-      password: 'qwerty',
+      password: '9tC4MUEQbsy9',
     }
 
     this.client = mqtt.connect(options)
     this.logger.log(`Attempting to connect to MQTT broker at ${options.host}:${options.port}`)
 
-    const topics = ['esp/1/mpu6050', 'esp/1/adxl345', 'esp/sensor', 'esp/1/accident']
+    const topics = ['esp/output1', 'esp/1/adxl345', 'esp/sensor', 'esp/1/accident']
 
     this.client.on('connect', () => {
       this.logger.log('Successfully connected to MQTT broker')
-      this.client.subscribe(topics, {}, (error, granted) => {
+      this.client.subscribe('esp/output1', {}, (error, granted) => {
+        if (error) {
+          this.logger.error('Subscription error:', error)
+        } else {
+          granted.forEach(grant => {
+            this.logger.log(`Successfully subscribed to topic ${grant.topic} with QoS ${grant.qos}`)
+          })
+        }
+      })
+      ,this.client.subscribe('esp/1/accident', {}, (error, granted) => {
         if (error) {
           this.logger.error('Subscription error:', error)
         } else {
@@ -42,23 +51,14 @@ export class MqttService implements OnModuleInit {
     })
 
     this.client.on('message', (topic, message) => {
-      this.handleMessage('esp/1/mpu6050', message.toString())
-    })
-    this.client.on('message', (topic, message) => {
-      this.handleMessage('esp/1/adxl345', message.toString())
-    })
-    this.client.on('message', (topic, message) => {
+      this.handleMessage('esp/output1', message.toString())
       this.handleMessage('esp/1/accident', message.toString())
     })
 
-    this.client.on('error', (error) => {
-      this.logger.error('MQTT connection error:', error)
-    })
   }
 
   private handleMessage(topic: string, message: string) {
     const sensorData = JSON.parse(message)
-    console.log(sensorData,topic
-    )
+    console.log(sensorData)
   }
 }

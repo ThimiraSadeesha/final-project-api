@@ -6,7 +6,7 @@ import { CreateIncidentDTO, UpdateIncidentDTO } from './incident.entity'
 export class IncidentController {
   constructor(private readonly incidentService: IncidentService) {}
 
-  @Get()
+  @Get('/all')
   async getAllIncidents() {
     return await this.incidentService.getAll();
   }

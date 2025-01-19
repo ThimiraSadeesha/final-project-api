@@ -6,14 +6,14 @@ import { CreateUserDTO, UpdateUserDTO } from './user.entity'
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('/all')
+  @Get()
   async  getAll(){
     return  await  this.userService.getAll();
   }
 
   @Post()
   async create(@Body()createUserDTO:CreateUserDTO){
-
+    console.log(createUserDTO)
     return this.userService.create(createUserDTO);
   }
 

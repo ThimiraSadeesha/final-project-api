@@ -18,6 +18,6 @@ START TRANSACTION;
             tp.province AS province,
             tp.areaCovered AS areaCovered
 
-            FROM tbl_police tp;
+            FROM tbl_police tp  ORDER BY id DESC;
 COMMIT ;
     END;

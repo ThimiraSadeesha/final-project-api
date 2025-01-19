@@ -16,7 +16,7 @@ export class User {
   @Column({ type: 'varchar', length: 255 })
   fullName: string;
 
-  @Column({ type: 'varchar', length: 15, unique: true })
+  @Column({ type: 'varchar', length: 15 })
   nic: string;
 
   @Column({ type: 'varchar', length: 20, nullable: true })

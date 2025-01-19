@@ -23,7 +23,7 @@ INSERT INTO tbl_response ( responseStatus, responseTime, incidentId, policeDepar
         fireDepartmentId_val, hospitalDepartmentId_val);
 
 SET @InsertedID = LAST_INSERT_ID();
-CALL response_get(@InsertedID);
+select @InsertedID;
 
 COMMIT;
     END;

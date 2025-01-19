@@ -12,55 +12,47 @@ import { NotificationModule } from './src/modules/notification/notification.modu
 import { HealthModule } from './src/modules/health/health.module'
 import { InsuranceModule } from './src/modules/insurance/insurance.module'
 import { IncidentModule } from './src/modules/incident/incident.module'
+import { ChartModule } from './src/modules/chart/chart.module'
 
 
 export const routes: Routes = [
   {
-    path: 'accident',
-    module: IncidentModule
-
-  },   {
-    path: 'health',
-    module: HealthModule
+    path: 'accident', module: IncidentModule,
 
   }, {
-    path: 'user',
-    module: UserModule,
+    path: 'health', module: HealthModule,
+
   }, {
-    path: 'vehicle',
-    module: VehicleModule,
-  }
-  , {
-    path: 'fire',
-    module: FireModule,
-  }
-  , {
-    path: 'hospital',
-    module: HospitalModule,
-  }
-  , {
-    path: 'police',
-    module: PoliceModule,
-  }
-  , {
-    path: 'role',
-    module: RoleModule,
-  }
-  , {
-    path: 'response',
-    module: ResponseModule,
+    path: 'user', module: UserModule,
   }, {
-    path: 'emergency',
-    module: EmergencyPersonModule,
+    path: 'vehicle', module: VehicleModule,
+  }
+  , {
+    path: 'fire', module: FireModule,
+  }
+  , {
+    path: 'hospital', module: HospitalModule,
+  }
+  , {
+    path: 'police', module: PoliceModule,
+  }
+  , {
+    path: 'role', module: RoleModule,
+  }
+  , {
+    path: 'response', module: ResponseModule,
   }, {
-    path: 'device',
-    module: DeviceModule,
+    path: 'emergency', module: EmergencyPersonModule,
   }, {
-    path: 'notification',
-    module: NotificationModule,
-  },, {
-    path: 'insurance',
-    module: InsuranceModule,
+    path: 'device', module: DeviceModule,
+  }, {
+    path: 'notification', module: NotificationModule,
+  }, {
+    path: 'insurance', module: InsuranceModule,
   },
+  {
+    path: 'summary', module: ChartModule,
+  },
+
 
 ]

@@ -3,10 +3,12 @@ import { ChartService } from './chart.service';
 import { ChartController } from './chart.controller';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { DataSource } from 'typeorm'
+import { NotificationService } from '../notification/notification.service'
+import { Incident } from '../../schemas/incident.schema'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DataSource])],
+  imports: [TypeOrmModule.forFeature([DataSource,Incident])],
   controllers: [ChartController],
-  providers: [ChartService],
+  providers: [ChartService,NotificationService],
 })
 export class ChartModule {}

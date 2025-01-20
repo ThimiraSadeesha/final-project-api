@@ -14,7 +14,6 @@ CREATE PROCEDURE incident_find(
     IN page_number INT
 )
 BEGIN
-
     DECLARE user_name_cond VARCHAR(255) DEFAULT '';
     DECLARE nic_cond VARCHAR(255) DEFAULT '';
     DECLARE contact_number_cond VARCHAR(255) DEFAULT '';
@@ -27,6 +26,34 @@ BEGIN
     DECLARE incident_status_cond VARCHAR(255) DEFAULT '';
     DECLARE limit_cond VARCHAR(255) DEFAULT '';
 
+    DROP TEMPORARY TABLE IF EXISTS `tmp_count`;
+    CREATE TEMPORARY TABLE `tmp_count`
+    (
+        total_count INT
+    );
+
+    DROP TEMPORARY TABLE IF EXISTS `tmp_data`;
+    CREATE TEMPORARY TABLE `tmp_data`
+    (
+        fullName       VARCHAR(255),
+        nic            VARCHAR(15),
+        contactNumber  VARCHAR(20),
+        gender         VARCHAR(10),
+        city           VARCHAR(255),
+        district       VARCHAR(255),
+        province       VARCHAR(255),
+        vehicleNumber  VARCHAR(255),
+        manufactureYear INT,
+        vehicleType    VARCHAR(255),
+        model          VARCHAR(255),
+        deviceId       VARCHAR(255),
+        deviceType     VARCHAR(255),
+        deviceStatus   VARCHAR(255),
+        severity       VARCHAR(255),
+        location       VARCHAR(255),
+        time           DATETIME,
+        incidentStatus VARCHAR(15)
+    );
 
     IF user_name IS NOT NULL AND user_name <> '' THEN
         SET user_name_cond = CONCAT(' AND u.fullName LIKE "%', user_name, '%"');
@@ -73,24 +100,67 @@ BEGIN
         SET limit_cond = CONCAT(' LIMIT ', @offset, ', ', items_per_page);
     END IF;
 
-    SET @query = CONCAT(
-            'SELECT
-                u.fullName, u.nic, u.contactNumber, u.gender, u.city, u.district, u.province,
-                v.vehicleNumber, v.manufactureYear, v.vehicleType, v.model,
-                d.deviceId, d.type AS deviceType, d.deviceStatus,
-                i.severity, i.location, i.time, i.incidentStatus
-            FROM tbl_user u
-            LEFT JOIN tbl_vehicle v ON v.id = u.vehicleId
-            LEFT JOIN tbl_device d ON d.userId = u.id
-            LEFT JOIN tbl_incident i ON i.deviceId = d.id
-            WHERE 1=1',
-            user_name_cond, nic_cond, contact_number_cond, city_cond, district_cond, province_cond,
+    SET @countQuery = CONCAT(
+            'INSERT INTO tmp_count (total_count)
+             SELECT COUNT(*)
+             FROM tbl_user u
+             LEFT JOIN tbl_vehicle v ON v.id = u.vehicleId
+             LEFT JOIN tbl_device d ON d.userId = u.id
+             LEFT JOIN tbl_incident i ON i.deviceId = d.id
+             WHERE 1=1', user_name_cond, nic_cond, contact_number_cond, city_cond, district_cond, province_cond,
+            vehicle_number_cond, device_id_cond, severity_cond, incident_status_cond
+                      );
+    PREPARE stmt1 FROM @countQuery;
+    EXECUTE stmt1;
+    DEALLOCATE PREPARE stmt1;
+
+    SET @dataQuery = CONCAT(
+            'INSERT INTO tmp_data (fullName, nic, contactNumber, gender, city, district, province, vehicleNumber,
+                                    manufactureYear, vehicleType, model, deviceId, deviceType, deviceStatus, severity,
+                                    location, time, incidentStatus)
+             SELECT u.fullName, u.nic, u.contactNumber, u.gender, u.city, u.district, u.province,
+                    v.vehicleNumber, v.manufactureYear, v.vehicleType, v.model,
+                    d.deviceId, d.type AS deviceType, d.deviceStatus,
+                    i.severity, i.location, i.time, i.incidentStatus
+             FROM tbl_user u
+             LEFT JOIN tbl_vehicle v ON v.id = u.vehicleId
+             LEFT JOIN tbl_device d ON d.userId = u.id
+             LEFT JOIN tbl_incident i ON i.deviceId = d.id
+             WHERE 1=1', user_name_cond, nic_cond, contact_number_cond, city_cond, district_cond, province_cond,
             vehicle_number_cond, device_id_cond, severity_cond, incident_status_cond,
             ' ORDER BY i.time DESC', limit_cond
-                 );
+                     );
+    PREPARE stmt2 FROM @dataQuery;
+    EXECUTE stmt2;
+    DEALLOCATE PREPARE stmt2;
 
+    SELECT page_number                         AS page,
+           items_per_page                      AS itemsPerPage,
+           (SELECT total_count FROM tmp_count) AS totalItems,
+           (SELECT JSON_ARRAYAGG(
+                           JSON_OBJECT(
+                                   'fullName', td.fullName,
+                                   'nic', td.nic,
+                                   'contactNumber', td.contactNumber,
+                                   'gender', td.gender,
+                                   'city', td.city,
+                                   'district', td.district,
+                                   'province', td.province,
+                                   'vehicleNumber', td.vehicleNumber,
+                                   'manufactureYear', td.manufactureYear,
+                                   'vehicleType', td.vehicleType,
+                                   'model', td.model,
+                                   'deviceId', td.deviceId,
+                                   'deviceType', td.deviceType,
+                                   'deviceStatus', td.deviceStatus,
+                                   'severity', td.severity,
+                                   'location', td.location,
+                                   'time', td.time,
+                                   'incidentStatus', td.incidentStatus
+                           )
+                   )
+            FROM tmp_data td)                  AS data;
 
-    PREPARE stmt FROM @query;
-    EXECUTE stmt;
-    DEALLOCATE PREPARE stmt;
+    DROP TEMPORARY TABLE IF EXISTS `tmp_count`;
+    DROP TEMPORARY TABLE IF EXISTS `tmp_data`;
 END;

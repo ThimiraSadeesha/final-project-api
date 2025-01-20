@@ -1,28 +1,15 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common'
-import { NotificationService } from './notification.service';
+import { NotificationService } from './notification.service'
 import { CreateNotificationDTO, UpdateNotificationDTO } from './notification.entity'
 
 @Controller()
 export class NotificationController {
-  constructor(private readonly notificationService: NotificationService) {}
+  constructor(private readonly notificationService: NotificationService) {
+  }
 
-  @Get()
+  @Get('latest/notification')
   async getAllEmergencyPersons() {
-    return await this.notificationService.getAll();
+    return await this.notificationService.getRecentIncidents()
   }
 
-  @Post()
-  async createEmergencyPerson(@Body() createNotificationDTO:CreateNotificationDTO) {
-    return await this.notificationService.create(createNotificationDTO);
-  }
-
-  @Put('/:id')
-  async updateEmergencyPerson(@Param('id') id: number, @Body() updateNotificationDTO:UpdateNotificationDTO) {
-    return await this.notificationService.update(id, updateNotificationDTO);
-  }
-
-  @Get('/:id')
-  async getEmergencyPersonById(@Param('id') id: number) {
-    return await this.notificationService.getById(id);
-  }
 }

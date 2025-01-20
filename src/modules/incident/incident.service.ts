@@ -12,6 +12,48 @@ export class IncidentService {constructor(
 ) {
 }
 
+
+  async findIncidentReports(
+    user_name: string,
+    nic: string,
+    contact_number: string,
+    city: string,
+    district: string,
+    province: string,
+    vehicle_number: string,
+    device_id: string,
+    severity: string,
+    incident_status: string,
+    startDate: number,
+    endDate: number,
+  ) {
+
+
+
+    const result = await this.dataSourceRepository.query(
+      'CALL incident_find(?,?,?,?,?,?,?,?,?,?,?,?)',
+      [
+        user_name,
+        nic,
+        contact_number,
+        city,
+        district,
+        province,
+        vehicle_number,
+        device_id,
+        severity,
+        incident_status,
+        startDate,
+        endDate,
+      ],
+    );
+
+    return processData(result,0);
+
+  }
+
+
+
   async getAll() {
     const result = await this.dataSourceRepository.query('CALL accident_detection_DB.incident_getAll()')
     return processData(result, 0)

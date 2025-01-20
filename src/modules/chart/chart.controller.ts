@@ -19,8 +19,8 @@ export class ChartController {
     @Query('device_id') device_id: string,
     @Query('severity') severity: string,
     @Query('incident_status') incident_status: string,
-    @Query('startDate') items_per_page: string,
-    @Query('endDate') page_number: string,
+    @Query('startDate') startDate: string,
+    @Query('endDate') endDate: string,
   ) {
     return this.chartService.findIncidentReports(
       user_name || '',
@@ -33,8 +33,8 @@ export class ChartController {
       device_id || '',
       severity || '',
       incident_status || '',
-      items_per_page || '',
-      page_number || ''
+      startDate || '',
+      endDate || ''
     )
 
   }

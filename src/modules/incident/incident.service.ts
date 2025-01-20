@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm'
 import { DataSource, Repository } from 'typeorm'
 import { processData } from '../../utils/enums/util.enums'
-import { CreateNotificationDTO, UpdateNotificationDTO } from '../notification/notification.entity'
 import { CreateIncidentDTO, UpdateIncidentDTO } from './incident.entity'
 
 @Injectable()
@@ -27,8 +26,6 @@ export class IncidentService {constructor(
     startDate: number,
     endDate: number,
   ) {
-
-
 
     const result = await this.dataSourceRepository.query(
       'CALL incident_find(?,?,?,?,?,?,?,?,?,?,?,?)',

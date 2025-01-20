@@ -14,7 +14,6 @@ CREATE PROCEDURE incident_report_find(
     IN end_date VARCHAR(50)
 )
 BEGIN
-
     DECLARE user_name_cond VARCHAR(255) DEFAULT '';
     DECLARE nic_cond VARCHAR(255) DEFAULT '';
     DECLARE contact_number_cond VARCHAR(255) DEFAULT '';
@@ -25,9 +24,7 @@ BEGIN
     DECLARE device_id_cond VARCHAR(255) DEFAULT '';
     DECLARE severity_cond VARCHAR(255) DEFAULT '';
     DECLARE incident_status_cond VARCHAR(255) DEFAULT '';
-    DECLARE limit_cond VARCHAR(255) DEFAULT '';
     DECLARE date_range_cond VARCHAR(255) DEFAULT '';
-
 
     IF user_name IS NOT NULL AND user_name <> '' THEN
         SET user_name_cond = CONCAT(' AND u.fullName LIKE "%', user_name, '%"');
@@ -69,8 +66,8 @@ BEGIN
         SET incident_status_cond = CONCAT(' AND i.incidentStatus = "', incident_status, '"');
     END IF;
 
-    IF start_date IS NOT NULL AND end_date IS NOT NULL THEN
-        SET date_range_cond = CONCAT(' AND i.time, BETWEEN "', start_date, '" AND "', end_date, '"');
+    IF start_date IS NOT NULL AND start_date <> '' AND end_date IS NOT NULL AND end_date <> '' THEN
+        SET date_range_cond = CONCAT(' AND i.time BETWEEN "', start_date, '" AND "', end_date, '"');
     END IF;
 
     SET @query = CONCAT(
@@ -86,11 +83,11 @@ BEGIN
             WHERE 1=1',
             user_name_cond, nic_cond, contact_number_cond, city_cond, district_cond, province_cond,
             vehicle_number_cond, device_id_cond, severity_cond, incident_status_cond, date_range_cond,
-            ' ORDER BY i.time DESC', limit_cond
+            ' ORDER BY i.time DESC'
                  );
-
 
     PREPARE stmt FROM @query;
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;
+
 END;

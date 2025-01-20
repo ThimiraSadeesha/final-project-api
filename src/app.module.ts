@@ -26,6 +26,9 @@ import { HealthModule } from './modules/health/health.module'
 import { EventEmitterModule } from '@nestjs/event-emitter'
 import { InsuranceModule } from './modules/insurance/insurance.module'
 import { ChartModule } from './modules/chart/chart.module'
+import { Incident } from './schemas/incident.schema'
+import { Device } from './schemas/device.schema'
+
 
 
 @Module({
@@ -36,6 +39,8 @@ import { ChartModule } from './modules/chart/chart.module'
 
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
+    TypeOrmModule.forFeature([Incident]),
+    TypeOrmModule.forFeature([Device]),
     RouterModule.register(routes),
     HealthModule,
     EventEmitterModule.forRoot(),
@@ -57,8 +62,8 @@ import { ChartModule } from './modules/chart/chart.module'
 
   ],
   controllers: [AppController],
+  exports: [MqttService],
   providers: [
-
     AppService,
     MqttService,
     {

@@ -4,6 +4,7 @@ import { IncidentController } from './incident.controller';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { DataSource } from 'typeorm'
 
+
 @Module({
   imports: [TypeOrmModule.forFeature([DataSource])],
   controllers: [IncidentController],

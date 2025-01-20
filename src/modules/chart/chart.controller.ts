@@ -1,9 +1,12 @@
 import { Controller, Get, Query } from '@nestjs/common'
 import { ChartService } from './chart.service'
+import { NotificationService } from '../notification/notification.service'
 
 @Controller()
 export class ChartController {
-  constructor(private readonly chartService: ChartService) {
+  constructor(private readonly chartService: ChartService,
+              private readonly notificationService: NotificationService
+  ) {
   }
 
 
@@ -44,4 +47,12 @@ export class ChartController {
   async getCharts() {
     return await this.chartService.getAll()
   }
+
+
+  @Get('latest')
+  async noti() {
+    return await this.notificationService.getRecentIncidents()
+  }
+
+
 }

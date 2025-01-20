@@ -70,7 +70,7 @@ export class MqttService implements OnModuleInit {
     console.log(sensorData)
     const incidentData: Partial<Incident> = {
       severity: sensorData.status || 'unknown',
-      location: sensorData.latitude ? `${sensorData.latitude}, ${sensorData.longitude}` : 'unknown',
+      location: sensorData.latitude ? `${sensorData.latitude},${sensorData.longitude}` : 'unknown',
       device: sensorData.id,
       createdAt: new Date(),
       updatedAt: new Date(),

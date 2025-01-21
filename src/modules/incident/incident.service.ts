@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm'
 import { DataSource, Repository } from 'typeorm'
-import { processData } from '../../utils/enums/util.enums'
+import { processData, processPaginationData } from '../../utils/enums/util.enums'
 import { CreateIncidentDTO, UpdateIncidentDTO } from './incident.entity'
 
 @Injectable()
@@ -45,7 +45,7 @@ export class IncidentService {constructor(
       ],
     );
 
-    return processData(result,0);
+    return processPaginationData(result);
 
   }
 

@@ -35,24 +35,25 @@ BEGIN
     DROP TEMPORARY TABLE IF EXISTS `tmp_data`;
     CREATE TEMPORARY TABLE `tmp_data`
     (
-        fullName       VARCHAR(255),
-        nic            VARCHAR(15),
-        contactNumber  VARCHAR(20),
-        gender         VARCHAR(10),
-        city           VARCHAR(255),
-        district       VARCHAR(255),
-        province       VARCHAR(255),
-        vehicleNumber  VARCHAR(255),
+        id              INT,
+        fullName        VARCHAR(255),
+        nic             VARCHAR(15),
+        contactNumber   VARCHAR(20),
+        gender          VARCHAR(10),
+        city            VARCHAR(255),
+        district        VARCHAR(255),
+        province        VARCHAR(255),
+        vehicleNumber   VARCHAR(255),
         manufactureYear INT,
-        vehicleType    VARCHAR(255),
-        model          VARCHAR(255),
-        deviceId       VARCHAR(255),
-        deviceType     VARCHAR(255),
-        deviceStatus   VARCHAR(255),
-        severity       VARCHAR(255),
-        location       VARCHAR(255),
-        time           DATETIME,
-        incidentStatus VARCHAR(15)
+        vehicleType     VARCHAR(255),
+        model           VARCHAR(255),
+        deviceId        VARCHAR(255),
+        deviceType      VARCHAR(255),
+        deviceStatus    VARCHAR(255),
+        severity        VARCHAR(255),
+        location        VARCHAR(255),
+        time            DATETIME,
+        incidentStatus  VARCHAR(15)
     );
 
     IF user_name IS NOT NULL AND user_name <> '' THEN
@@ -115,10 +116,10 @@ BEGIN
     DEALLOCATE PREPARE stmt1;
 
     SET @dataQuery = CONCAT(
-            'INSERT INTO tmp_data (fullName, nic, contactNumber, gender, city, district, province, vehicleNumber,
+            'INSERT INTO tmp_data (id,fullName, nic, contactNumber, gender, city, district, province, vehicleNumber,
                                     manufactureYear, vehicleType, model, deviceId, deviceType, deviceStatus, severity,
                                     location, time, incidentStatus)
-             SELECT u.fullName, u.nic, u.contactNumber, u.gender, u.city, u.district, u.province,
+             SELECT i.id, u.fullName, u.nic, u.contactNumber, u.gender, u.city, u.district, u.province,
                     v.vehicleNumber, v.manufactureYear, v.vehicleType, v.model,
                     d.deviceId, d.type AS deviceType, d.deviceStatus,
                     i.severity, i.location, i.time, i.incidentStatus
@@ -139,6 +140,7 @@ BEGIN
            (SELECT total_count FROM tmp_count) AS totalItems,
            (SELECT JSON_ARRAYAGG(
                            JSON_OBJECT(
+                                   'id', td.id,
                                    'fullName', td.fullName,
                                    'nic', td.nic,
                                    'contactNumber', td.contactNumber,

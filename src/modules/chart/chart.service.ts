@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, UnauthorizedException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { DataSource, Repository } from 'typeorm'
 import { processData } from '../../utils/enums/util.enums'
 import { User } from '../../schemas/user.schema'
 import { LoginDTO } from './chart.entity'
+import { JwtService } from '@nestjs/jwt'
 
 @Injectable()
 export class ChartService {
@@ -12,6 +13,7 @@ export class ChartService {
     private dataSourceRepository: Repository<DataSource>,
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private readonly jwtService: JwtService,
   ) {
   }
 
@@ -54,14 +56,26 @@ export class ChartService {
     return processData(result, 0)
   }
 
-  async login(loginDTO: LoginDTO) {
-    return await this.userRepository.findOne({
-      where: {
-        userName: loginDTO.username,
-        userPassword: loginDTO.password,
-      },
-    })
 
+  async validateUser(username: string, password: string) {
+    const user = await this.userRepository.findOne({ where: { userName: username } })
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials')
+    }
+    return user
+  }
+
+  async login(loginDTO: LoginDTO) {
+    const user = await this.validateUser(loginDTO.username, loginDTO.password)
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials')
+    }
+    const payload = { username: user.userName,password:user.userPassword,id:user.id }
+
+    return {
+      userName: user.userName,
+      userId: user.id,
+    }
   }
 
 }

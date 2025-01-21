@@ -27,6 +27,9 @@ export class FireDepartment extends BaseEntity {
   @Column({ type: 'varchar', length: 255 ,nullable: false})
   areaCovered: string;
 
+  @Column({ type: 'varchar', length: 255,nullable: true  })
+  location: string;
+
   @ManyToMany(() => Incident)
   incidents: Incident[];
 

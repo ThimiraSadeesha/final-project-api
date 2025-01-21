@@ -129,7 +129,7 @@ BEGIN
              LEFT JOIN tbl_incident i ON i.deviceId = d.id
              WHERE 1=1', user_name_cond, nic_cond, contact_number_cond, city_cond, district_cond, province_cond,
             vehicle_number_cond, device_id_cond, severity_cond, incident_status_cond,
-            ' ORDER BY i.time DESC', limit_cond
+            ' ORDER BY i.id DESC', limit_cond
                      );
     PREPARE stmt2 FROM @dataQuery;
     EXECUTE stmt2;

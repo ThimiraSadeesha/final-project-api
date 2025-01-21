@@ -1,11 +1,12 @@
-import { Controller, Get, Query } from '@nestjs/common'
+import { Body, Controller, Get, Post, Query } from '@nestjs/common'
 import { ChartService } from './chart.service'
 import { NotificationService } from '../notification/notification.service'
+import { LoginDTO } from './chart.entity'
 
 @Controller()
 export class ChartController {
   constructor(private readonly chartService: ChartService,
-              private readonly notificationService: NotificationService
+              private readonly notificationService: NotificationService,
   ) {
   }
 
@@ -37,7 +38,7 @@ export class ChartController {
       severity || '',
       incident_status || '',
       startDate || '',
-      endDate || ''
+      endDate || '',
     )
 
   }
@@ -50,8 +51,13 @@ export class ChartController {
 
 
   @Get('latest')
-  async noti() {
+  async recentIncidents() {
     return await this.notificationService.getRecentIncidents()
+  }
+
+  @Post()
+  async login(@Body() loginDTO: LoginDTO) {
+    return await this.chartService.login(loginDTO)
   }
 
 

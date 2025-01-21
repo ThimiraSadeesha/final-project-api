@@ -26,13 +26,13 @@ export class NotificationSchema extends BaseEntity {
   @ManyToMany(() => EmergencyPerson, emergencyPerson => emergencyPerson.notifications)
   emergencyPerson: EmergencyPerson[];
 
-
-  @ManyToOne(
-    () => User,
-    (user) => user.notification,
-    {nullable: false}
-  )
-  notification: User
+  //
+  // @ManyToOne(
+  //   () => User,
+  //   (user) => user.notification,
+  //   {nullable: false}
+  // )
+  // notification: User
 
   @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

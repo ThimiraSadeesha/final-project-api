@@ -28,8 +28,8 @@ export class EmergencyPerson extends BaseEntity {
   @Column({ type: 'varchar', length: 10 })
   gender: string;
 
-  @ManyToMany(() => User, user => user.emergencyPerson)
-  users: User[];
+  @ManyToOne(() => User, user => user.emergencyPerson)
+  user: User[];
 
   @OneToMany(() => NotificationSchema, notification => notification.emergencyPerson)
   notifications: NotificationSchema[];

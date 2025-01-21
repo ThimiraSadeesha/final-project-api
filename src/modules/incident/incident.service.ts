@@ -1,15 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { DataSource, Repository } from 'typeorm'
 import { processData, processPaginationData } from '../../utils/enums/util.enums'
 import { CreateIncidentDTO, UpdateIncidentDTO } from './incident.entity'
 
 @Injectable()
-export class IncidentService {constructor(
-  @InjectRepository(DataSource)
-  private dataSourceRepository: Repository<DataSource>,
-) {
-}
+export class IncidentService {
+  constructor(
+    @InjectRepository(DataSource)
+    private dataSourceRepository: Repository<DataSource>,
+  ) {
+  }
 
 
   async findIncidentReports(
@@ -43,12 +44,11 @@ export class IncidentService {constructor(
         startDate,
         endDate,
       ],
-    );
+    )
 
-    return processPaginationData(result);
+    return processPaginationData(result)
 
   }
-
 
 
   async getAll() {
@@ -56,8 +56,8 @@ export class IncidentService {constructor(
     return processData(result, 0)
   }
 
-  async create(createIncidentDTO:CreateIncidentDTO ) {
-    let result= await this.dataSourceRepository.query('CALL accident_detection_DB.incident_save(?,?,?,?)', [
+  async create(createIncidentDTO: CreateIncidentDTO) {
+    let result = await this.dataSourceRepository.query('CALL accident_detection_DB.incident_save(?,?,?,?)', [
       createIncidentDTO.severity,
       createIncidentDTO.location,
       createIncidentDTO.incidentStatus,
@@ -66,13 +66,13 @@ export class IncidentService {constructor(
     return processData(result, 1)
   }
 
-  async update(id:number, updateIncidentDTO:UpdateIncidentDTO) {
-    let result= await this.dataSourceRepository.query('CALL accident_detection_DB.incident_update(?,?,?,?,?)', [
+  async update(id: number, updateIncidentDTO: UpdateIncidentDTO) {
+    let result = await this.dataSourceRepository.query('CALL accident_detection_DB.incident_update(?,?,?,?,?)', [
       id,
-      updateIncidentDTO.severity,
-      updateIncidentDTO.location,
+      updateIncidentDTO.hospitalId,
+      updateIncidentDTO.policeId,
+      updateIncidentDTO.fireId,
       updateIncidentDTO.incidentStatus,
-      updateIncidentDTO.deviceId,
     ])
     return processData(result, 1)
   }

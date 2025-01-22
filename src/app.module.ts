@@ -36,7 +36,6 @@ import { Device } from './schemas/device.schema'
     ConfigModule.forRoot({
       envFilePath: `.env`,
       isGlobal: true,
-
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
     TypeOrmModule.forFeature([Incident]),

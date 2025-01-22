@@ -24,6 +24,7 @@
     "migration:revert": "npm run typeorm -- migration:revert"
   },
   "dependencies": {
+    "@nestjs-modules/mailer": "^2.0.2",
     "@nestjs/common": "^10.2.9",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.2.9",
@@ -43,9 +44,11 @@
     "date-fns": "^3.6.0",
     "EventEmitter": "^1.0.0",
     "http": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.5",
     "mqtt": "^5.5.5",
     "mysql2": "^3.9.7",
+    "nodemailer": "^6.9.16",
     "os": "^0.1.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",

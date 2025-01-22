@@ -61,6 +61,7 @@ export class MqttService implements OnModuleInit {
 
     this.client.on('message', (topic, message) => {
       this.handleMessage('esp/1/accident', message.toString())
+      // this.handleMessage('esp/output1', message.toString())
     })
 
   }

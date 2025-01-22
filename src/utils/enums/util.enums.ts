@@ -37,30 +37,11 @@ export function processPaginationData (response: any){
   }
 }
 
-export async function executeProcedure<T>(
-  repository: Repository<T>,
-  procedureName: string,
-  params?: any | any[]
-) {
-  // try {
-  const formattedParams = Array.isArray(params)
-    ? params
-    : Object.values(params);
 
-  const placeholders = formattedParams
-    .map(() => '?')
-    .join(', ');
-
-  return await repository.query(
-    `CALL ${procedureName}(${placeholders})`,
-    formattedParams
-  );
-  // } catch (error) {
-  //
-  //     return {
-  //         success: false,
-  //         message: `Error executing stored procedure: ${error.message}`,
-  //         error,
-  //     };
-  // }
-}
+//
+// DB_USER=root
+// DB_PWD=Qwertyuiop@123
+// DB_HOST=15.235.192.41
+// DB_PORT=3306
+// DATABASE=accident_detection_DB
+//
